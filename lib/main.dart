@@ -69,15 +69,23 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: _buildBar(context),
-      body: new Container(
-        padding: EdgeInsets.all(16.0),
-        child: new Column(
-          children: <Widget>[
-            _buildTextFields(),
-            _buildButtons(),
-          ],
+      body: new Stack(fit: StackFit.expand, children: <Widget>[
+        new Image(
+        image: new AssetImage("assets/Login_background.jpg"),
+        fit: BoxFit.cover,
+        colorBlendMode: BlendMode.darken,
+        color: Colors.black38,
         ),
-      ),
+        new Container(
+          padding: EdgeInsets.all(16.0),
+          child: new Column(
+            children: <Widget>[
+              _buildTextFields(),
+              _buildButtons(),
+            ],
+          ),
+        ),
+      ]),
     );
   }
 
@@ -97,7 +105,8 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _emailFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Email'
+                    labelText: 'Email',
+                    labelStyle: new TextStyle(color: Colors.white)
                 ),
               ),
             ),
@@ -105,7 +114,8 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Password'
+                    labelText: 'Password',
+                    labelStyle: new TextStyle(color: Colors.white)
                 ),
                 obscureText: true,
               ),
@@ -122,7 +132,8 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _emailFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Email'
+                    labelText: 'Email',
+                    labelStyle: new TextStyle(color: Colors.white)
                 ),
               ),
             ),
@@ -130,7 +141,8 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Password'
+                    labelText: 'Password',
+                    labelStyle: new TextStyle(color: Colors.white)
                 ),
                 obscureText: true,
               ),
@@ -139,7 +151,8 @@ class _LoginPageState extends State<LoginPage> {
               child: new TextField(
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Comfirm Password'
+                    labelText: 'Comfirm Password',
+                    labelStyle: new TextStyle(color: Colors.white)
                 ),
                 obscureText: true,
               ),
@@ -160,11 +173,13 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _loginPressed,
             ),
             new FlatButton(
-              child: new Text('Dont have an account? Tap here to register.'),
+              child: new Text('Dont have an account? Tap here to register.',
+                  style: TextStyle(color: Colors.white)),
               onPressed: _formChange,
             ),
             new FlatButton(
-              child: new Text('Forgot Password?'),
+              child: new Text('Forgot Password?',
+                  style: TextStyle(color: Colors.white)),
               onPressed: _passwordReset,
             )
           ],
@@ -179,7 +194,8 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _createAccountPressed,
             ),
             new FlatButton(
-              child: new Text('Have an account? Click here to login.'),
+              child: new Text('Have an account? Click here to login.',
+                  style: TextStyle(color: Colors.white)),
               onPressed: _formChange,
             )
           ],
