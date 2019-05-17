@@ -173,12 +173,12 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _loginPressed,
             ),
             new FlatButton(
-              child: new Text('Dont have an account? Tap here to register.',
+              child: new Text('Dont have an account yet? Tap here to register.',
                   style: TextStyle(color: Colors.white)),
               onPressed: _formChange,
             ),
             new FlatButton(
-              child: new Text('Forgot Password?',
+              child: new Text('Forgot Password? Tap here to reset.',
                   style: TextStyle(color: Colors.white)),
               onPressed: _passwordReset,
             )
@@ -194,7 +194,7 @@ class _LoginPageState extends State<LoginPage> {
               onPressed: _createAccountPressed,
             ),
             new FlatButton(
-              child: new Text('Have an account? Click here to login.',
+              child: new Text('Already have an account? Click here to login.',
                   style: TextStyle(color: Colors.white)),
               onPressed: _formChange,
             )
@@ -209,6 +209,7 @@ class _LoginPageState extends State<LoginPage> {
 
   void _createAccountPressed () {
     //to add pass account creation information the backend server
+    //navigation to full registration page with all user details required if email has not been used
   }
 
   void _passwordReset () {
