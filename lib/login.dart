@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'mainpage.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -189,6 +190,10 @@ class _LoginPageState extends State<LoginPage> {
   }
   void _loginPressed () {
     //to add pass login information to authenticate user
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage())
+    );
   }
 
   void _createAccountPressed () {
