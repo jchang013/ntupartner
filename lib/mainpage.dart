@@ -8,6 +8,18 @@ class MainPage extends StatefulWidget {
   }
 }
 
+class Menu{
+  static const String Settings = 'Settings';
+  static const String Help = 'Help';
+  static const String SignOut = 'Sign out';
+
+  static const List<String> choices = <String>[
+    Settings,
+    Help,
+    SignOut
+  ];
+}
+
 class _MainPageState extends State<MainPage> {
   int _currentIndex = 0;
   final List<Widget> _children = [
@@ -21,7 +33,23 @@ class _MainPageState extends State<MainPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text('Main'),
-        automaticallyImplyLeading: false
+        automaticallyImplyLeading: false,
+        leading:
+          new IconButton(icon: new Image.asset('assets/default_user_img.png'),),
+        actions: <Widget>[
+          //new IconButton(icon: Icon(Icons.more_vert), onPressed: null)
+          PopupMenuButton<String>(
+            onSelected: choiceAction,
+            itemBuilder: (BuildContext context){
+              return Menu.choices.map((String choice){
+                return PopupMenuItem<String>(
+                  value: choice,
+                  child: Text(choice),
+                );
+              }).toList();
+            },
+          )
+        ],
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -45,5 +73,18 @@ class _MainPageState extends State<MainPage> {
     setState(() {
       _currentIndex = index;
     });
+  }
+
+  void choiceAction(String choice){
+    if(choice == Menu.Settings){
+      print('Settings');
+
+    }else if(choice == Menu.Help){
+      print('Subscribe');
+
+    }else if(choice == Menu.SignOut){
+      print('SignOut');
+
+    }
   }
 }
