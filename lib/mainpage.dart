@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'match_placeholder.dart';
 import 'package:ntupartner/history_placeholder.dart';
+import 'package:flutter/signout.dart';
+import 'package:flutter/help.dart';
+import 'package:flutter/login.dart';
+
 
 class MainPage extends StatefulWidget {
   State<StatefulWidget> createState() {
@@ -78,12 +82,27 @@ class _MainPageState extends State<MainPage> {
   void choiceAction(String choice){
     if(choice == Menu.Settings){
       print('Settings');
+      
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SettingsPage())
+    );
 
     }else if(choice == Menu.Help){
       print('Subscribe');
+      
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => HelpPage())
+    );
 
     }else if(choice == Menu.SignOut){
       print('SignOut');
+      //Sign out will bring to login page
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage())
+    );
 
     }
   }
