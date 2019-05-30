@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 
-class PlaceholderHistory extends StatelessWidget {
+class PlaceholderHistory extends StatefulWidget {
+  @override
+  _PlaceholderHistoryState createState() => _PlaceholderHistoryState();
+}
+
+
+class _PlaceholderHistoryState extends State<PlaceholderHistory> {
   @override
   Widget build(BuildContext context) {
-    //To add if else statement to control when there is a history or not, if there is history add in ListView
     return new Container(
-      child: Center(
-        child: Text('No History Found')
-      )
+        child: Center(
+            child: Text('No History Found')
+        )
     );
   }
 }

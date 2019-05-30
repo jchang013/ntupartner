@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 
-class PlaceholderUser extends StatelessWidget {
+class PlaceholderUser extends StatefulWidget {
+  @override
+  _PlaceholderUserState createState() => _PlaceholderUserState();
+}
+
+class _PlaceholderUserState extends State<PlaceholderUser> {
   @override
   Widget build(BuildContext context) {
     //To add if else statement to control when there is a daily match or not

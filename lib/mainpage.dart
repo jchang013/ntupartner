@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'match_placeholder.dart';
 import 'package:ntupartner/history_placeholder.dart';
-import 'package:flutter/signout.dart';
-import 'package:flutter/help.dart';
-import 'package:flutter/login.dart';
+//import 'package:flutter/signout.dart';
+//import 'package:flutter/help.dart';
+//import 'package:flutter/login.dart';
 
 
 class MainPage extends StatefulWidget {
@@ -83,26 +83,26 @@ class _MainPageState extends State<MainPage> {
     if(choice == Menu.Settings){
       print('Settings');
       
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => SettingsPage())
-    );
+      //Navigator.push(
+        //context,
+       // MaterialPageRoute(builder: (context) => SettingsPage())
+    //);
 
     }else if(choice == Menu.Help){
       print('Subscribe');
       
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HelpPage())
-    );
+     // Navigator.push(
+        //context,
+        //MaterialPageRoute(builder: (context) => HelpPage())
+    //);
 
     }else if(choice == Menu.SignOut){
       print('SignOut');
       //Sign out will bring to login page
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage())
-    );
+     // Navigator.push(
+       // context,
+        //MaterialPageRoute(builder: (context) => LoginPage())
+    //);
 
     }
   }
