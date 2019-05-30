@@ -190,7 +190,8 @@ class _LoginPageState extends State<LoginPage> {
   }
   void _loginPressed () {
     //to add pass login information to authenticate user
-    Navigator.push(
+    print('Login');
+    Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MainPage())
     );
@@ -199,10 +200,12 @@ class _LoginPageState extends State<LoginPage> {
   void _createAccountPressed () {
     //to add pass account creation information the backend server
     //navigation to full registration page with all user details required if email has not been used
+    print('Creeat Account');
   }
 
   void _passwordReset () {
     //to add navigation to new page where user will enter their email to reset password
+    print('Password reset');
   }
 }
 
