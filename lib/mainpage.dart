@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'match_placeholder.dart';
 import 'package:ntupartner/history_placeholder.dart';
-//import 'package:flutter/signout.dart';
 //import 'package:flutter/help.dart';
 //import 'package:flutter/login.dart';
 
@@ -99,9 +98,9 @@ class _MainPageState extends State<MainPage> {
     }else if(choice == Menu.SignOut){
       print('SignOut');
       //Sign out will bring to login page
-     // Navigator.push(
-       // context,
-        //MaterialPageRoute(builder: (context) => LoginPage())
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => Login())
     //);
 
     }
