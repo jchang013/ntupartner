@@ -10,35 +10,34 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailFilter = new TextEditingController();
   final TextEditingController _passwordFilter = new TextEditingController();
+  final TextEditingController _passwordConfirmFilter = new TextEditingController();
 
   String _email = "";
   String _password = "";
+  String _passwordConfirm = "";
+
+  bool _emptyEmailField = false;
+  bool _emptyPassField = false;
+  bool _emptyPassConfirmField = false;
 
   FormType _form = FormType.login;
 
   _LoginPageState() {
     _emailFilter.addListener(_emailListen);
     _passwordFilter.addListener(_passwordListen);
+    _passwordConfirmFilter.addListener(_passwordConfirmListen);
   }
 
   void _emailListen() {
-    if (_emailFilter.text.isEmpty) {
-      //to add alert user if empty field
-    }
-    else {
-      //to add check if email is from NTU
-      _email = _emailFilter.text;
-    }
+    _email = _emailFilter.text;
   }
 
   void _passwordListen() {
-    if (_passwordFilter.text.isEmpty) {
-      //to add alert user if empty field
-    }
-    else {
-      //to add password strength checker
-      _password = _passwordFilter.text;
-    }
+    _password = _passwordFilter.text;
+  }
+
+  void _passwordConfirmListen() {
+    _passwordConfirm = _passwordConfirmFilter.text;
   }
 
   void _formChange () async {
@@ -92,7 +91,8 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _emailFilter,
                 decoration: new InputDecoration(
                     labelText: 'Email',
-                    labelStyle: new TextStyle(color: Colors.white)
+                    labelStyle: new TextStyle(color: Colors.white),
+                    errorText: _emptyEmailField ? 'Field Can\'t Be Empty' : null,
                 ),
               ),
             ),
@@ -101,7 +101,8 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
                     labelText: 'Password',
-                    labelStyle: new TextStyle(color: Colors.white)
+                    labelStyle: new TextStyle(color: Colors.white),
+                    errorText: _emptyPassField ? 'Field Can\'t Be Empty' : null,
                 ),
                 obscureText: true,
               ),
@@ -119,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _emailFilter,
                 decoration: new InputDecoration(
                     labelText: 'Email',
-                    labelStyle: new TextStyle(color: Colors.white)
+                    labelStyle: new TextStyle(color: Colors.white),
+                    errorText: _emptyEmailField ? 'Field Can\'t Be Empty' : null,
                 ),
               ),
             ),
@@ -128,17 +130,19 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
                     labelText: 'Password',
-                    labelStyle: new TextStyle(color: Colors.white)
+                    labelStyle: new TextStyle(color: Colors.white),
+                    errorText: _emptyPassField ? 'Field Can\'t Be Empty' : null,
                 ),
                 obscureText: true,
               ),
             ),
             new Container(
               child: new TextField(
-                controller: _passwordFilter,
+                controller: _passwordConfirmFilter,
                 decoration: new InputDecoration(
                     labelText: 'Comfirm Password',
-                    labelStyle: new TextStyle(color: Colors.white)
+                    labelStyle: new TextStyle(color: Colors.white),
+                    errorText: _emptyPassConfirmField ? 'Field Can\'t Be Empty' : null,
                 ),
                 obscureText: true,
               ),
@@ -156,7 +160,17 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             new RaisedButton(
               child: new Text('Login'),
-              onPressed: _loginPressed,
+              onPressed: () {
+                setState(() {
+                  _emailFilter.text.isEmpty ? _emptyEmailField = true : _emptyEmailField = false;
+                  _passwordFilter.text.isEmpty ? _emptyPassField = true : _emptyPassField = false;
+                  if (_emptyEmailField == false && _emptyPassField == false){
+                    _loginPressed ();
+                  } else {
+                    print('Empty email or pass field on logging in');
+                  }
+                });
+              }
             ),
             new FlatButton(
               child: new Text('Dont have an account yet? Tap here to register.',
@@ -177,7 +191,18 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             new RaisedButton(
               child: new Text('Create an Account'),
-              onPressed: _createAccountPressed,
+              onPressed: () {
+                setState(() {
+                  _emailFilter.text.isEmpty ? _emptyEmailField = true : _emptyEmailField = false;
+                  _passwordFilter.text.isEmpty ? _emptyPassField = true : _emptyPassField = false;
+                  _passwordConfirmFilter.text.isEmpty ? _emptyPassConfirmField = true : _emptyPassConfirmField = false;
+                  if (_emptyEmailField == false && _emptyPassField == false && _emptyPassConfirmField == false){
+                    _createAccountPressed ();
+                  } else {
+                    print('Empty email or password field on creating account');
+                  }
+                });
+              }
             ),
             new FlatButton(
               child: new Text('Already have an account? Click here to login.',
@@ -207,6 +232,10 @@ class _LoginPageState extends State<LoginPage> {
   void _passwordReset () {
     //to add navigation to new page where user will enter their email to reset password
     print('Password reset');
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PassResetPage())
+    );
   }
 }
 

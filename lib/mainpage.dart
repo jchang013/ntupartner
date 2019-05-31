@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'match_placeholder.dart';
-import 'package:ntupartner/history_placeholder.dart';
+import 'history_placeholder.dart';
+import 'login.dart';
 //import 'package:flutter/help.dart';
 //import 'package:flutter/login.dart';
 
@@ -88,7 +89,7 @@ class _MainPageState extends State<MainPage> {
     //);
 
     }else if(choice == Menu.Help){
-      print('Subscribe');
+      print('Help');
       
      // Navigator.push(
         //context,
@@ -100,9 +101,8 @@ class _MainPageState extends State<MainPage> {
       //Sign out will bring to login page
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => Login())
-    //);
-
+        MaterialPageRoute(builder: (context) => LoginPage())
+      );
     }
   }
 }
