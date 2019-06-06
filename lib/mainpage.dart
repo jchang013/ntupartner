@@ -105,4 +105,32 @@ class _MainPageState extends State<MainPage> {
       );
     }
   }
+  
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text("Sign Out"),
+          content: new Text("Are you sure you want to sign out?"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Sign Out"),
+              onPressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage());
+                  },
+                ),
+            new FlatButton(
+              child: new Text("Close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
