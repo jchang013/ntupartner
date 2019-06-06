@@ -99,10 +99,13 @@ class _MainPageState extends State<MainPage> {
     }else if(choice == Menu.SignOut){
       print('SignOut');
       //Sign out will bring to login page
-      Navigator.pushReplacement(
+      /*Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => LoginPage())
       );
+      */
+
+      _showDialog();
     }
   }
   
@@ -119,7 +122,7 @@ class _MainPageState extends State<MainPage> {
               onPressed: () {
                 Navigator.pushReplacement(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage());
+                  MaterialPageRoute(builder: (context) => LoginPage()));
                   },
                 ),
             new FlatButton(
