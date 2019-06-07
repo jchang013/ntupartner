@@ -22,15 +22,51 @@ class _ProfilePageState extends State<ProfilePage> {
                   alignment: Alignment(0.0, -0.95),
                   image: new AssetImage('assets/default_user_img.png')
               ),
-              new Align(
-                alignment: Alignment.centerLeft,
-                child: Text('<<Name>>', style: new TextStyle(fontSize: 20),),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text('<<name>>'),
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                  )
+                ],
               ),
-              new Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '<<Description>>', style: new TextStyle(fontSize: 16),)
-              )
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text('<<description>>'),
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                  )
+                ],
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text('<<hobby>>'),
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                  )
+                ],
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text('<<country>>'),
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                  )
+                ],
+              ),
+              new Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Text('<<regiglion>>'),
+                  IconButton(
+                    icon: Icon(Icons.edit),
+                  )
+                ],
+              ),
             ],
           )
       ),
