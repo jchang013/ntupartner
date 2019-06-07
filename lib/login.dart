@@ -88,6 +88,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             new Container(
               child: new TextField(
+                style: TextStyle(color: Colors.white),
                 controller: _emailFilter,
                 decoration: new InputDecoration(
                     labelText: 'Email',
@@ -98,6 +99,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             new Container(
               child: new TextField(
+                style: TextStyle(color: Colors.white),
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
                     labelText: 'Password',
@@ -117,6 +119,7 @@ class _LoginPageState extends State<LoginPage> {
           children: <Widget>[
             new Container(
               child: new TextField(
+                style: TextStyle(color: Colors.white),
                 controller: _emailFilter,
                 decoration: new InputDecoration(
                     labelText: 'Email',
@@ -127,6 +130,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             new Container(
               child: new TextField(
+                style: TextStyle(color: Colors.white),
                 controller: _passwordFilter,
                 decoration: new InputDecoration(
                     labelText: 'Password',
@@ -138,6 +142,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             new Container(
               child: new TextField(
+                style: TextStyle(color: Colors.white),
                 controller: _passwordConfirmFilter,
                 decoration: new InputDecoration(
                     labelText: 'Comfirm Password',

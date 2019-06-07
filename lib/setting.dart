@@ -13,16 +13,18 @@ class _SettingPageState extends State<SettingPage> {
     return MaterialApp(
       home: Scaffold(
           appBar: AppBar(
+            centerTitle: true,
             title: Text("Settings"),
           ),
       body: Center(
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-          
-          ]
-        )
-      ),
+
+            ]
+          )
+        ),
+      )
     );
   }
 }

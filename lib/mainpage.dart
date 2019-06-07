@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'match_placeholder.dart';
 import 'history_placeholder.dart';
 import 'login.dart';
+import 'setting.dart';
 //import 'package:flutter/help.dart';
 //import 'package:flutter/login.dart';
 
@@ -83,10 +84,10 @@ class _MainPageState extends State<MainPage> {
     if(choice == Menu.Settings){
       print('Settings');
       
-      //Navigator.push(
-        //context,
-       // MaterialPageRoute(builder: (context) => SettingsPage())
-    //);
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SettingPage())
+    );
 
     }else if(choice == Menu.Help){
       print('Help');
