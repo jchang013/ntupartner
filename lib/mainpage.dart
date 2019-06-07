@@ -3,6 +3,7 @@ import 'match_placeholder.dart';
 import 'history_placeholder.dart';
 import 'login.dart';
 import 'setting.dart';
+import 'profile.dart';
 //import 'package:flutter/help.dart';
 //import 'package:flutter/login.dart';
 
@@ -40,9 +41,15 @@ class _MainPageState extends State<MainPage> {
         title: Text('Main'),
         automaticallyImplyLeading: false,
         leading:
-          new IconButton(icon: new Image.asset('assets/default_user_img.png'),),
+          new IconButton(
+            icon: new Image.asset('assets/default_user_img.png'),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfilePage()));
+            },
+          ),
         actions: <Widget>[
-          //new IconButton(icon: Icon(Icons.more_vert), onPressed: null)
           PopupMenuButton<String>(
             onSelected: choiceAction,
             itemBuilder: (BuildContext context){
@@ -99,18 +106,11 @@ class _MainPageState extends State<MainPage> {
 
     }else if(choice == Menu.SignOut){
       print('SignOut');
-      //Sign out will bring to login page
-      /*Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => LoginPage())
-      );
-      */
-
-      _showDialog();
+      _showSignOutDialog();
     }
   }
   
-  void _showDialog() {
+  void _showSignOutDialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
