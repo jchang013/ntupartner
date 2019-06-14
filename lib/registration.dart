@@ -28,11 +28,20 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   _RegistrationPageState() {
     _usernameFilter.addListener(_usernameListen);
-
+    _nameFilter.addListener(_nameListen);
+    _descriptionFilter.addListener(_descriptionListen);
   }
 
   void _usernameListen() {
     _username = _usernameFilter.text;
+  }
+
+  void _nameListen() {
+    _name = _nameFilter.text;
+  }
+
+  void _descriptionListen() {
+    _description = _descriptionFilter.text;
   }
 
 
@@ -92,6 +101,22 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 errorText: _emptyNameField ? 'Field Can\'t Be Empty' : null,
               ),
             ),
+          ),
+          new Container(
+            child: new TextField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              style: TextStyle(
+                  color: Colors.white,
+                  height: 1.5,
+              ),
+              controller: _descriptionFilter,
+              decoration: new InputDecoration(
+                labelText: 'Describe Yourself',
+                labelStyle: new TextStyle(color: Colors.white),
+                errorText: _emptyDescriptionField ? 'Field Can\'t Be Empty' : null,
+              ),
+            ),
           )
         ],
       ),
@@ -115,6 +140,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
       ),
     );
 
+  }
+
+  void _createAccountPressed () {
+
+
+    print('Registering with \n '
+        '$_username as username \n'
+        '$_name as name \n'
+        '$_description as description');
   }
 
 }
