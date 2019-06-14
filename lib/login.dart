@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'mainpage.dart';
 import 'passreset.dart';
+import 'registration.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -231,6 +232,11 @@ class _LoginPageState extends State<LoginPage> {
   void _createAccountPressed () {
     //to add pass account creation information the backend server
     //navigation to full registration page with all user details required if email has not been used
+    //check if email has been used
+    Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => RegistrationPage())
+    );
     print('Creeat Account');
   }
 
