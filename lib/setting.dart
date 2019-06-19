@@ -23,12 +23,8 @@ class _SettingPageState extends State<SettingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: Text("Settings"),
-          ),
+    return Scaffold(
+        appBar: _buildBar(context),
         body: Column(
 
           children: <Widget>[
@@ -66,7 +62,13 @@ class _SettingPageState extends State<SettingPage> {
               ),
             ]
           )
-        ),
-      );
+        );
+  }
+
+  Widget _buildBar(BuildContext context) {
+    return new AppBar(
+      title: new Text("Settings"),
+      centerTitle: true,
+    );
   }
 }

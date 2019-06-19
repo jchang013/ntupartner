@@ -11,10 +11,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Profile'),
-        ),
+      appBar: _buildBar(context),
       body: Container(
           child: new Column(
             children: <Widget>[
@@ -70,6 +67,13 @@ class _ProfilePageState extends State<ProfilePage> {
             ],
           )
       ),
+    );
+  }
+
+  Widget _buildBar(BuildContext context) {
+    return new AppBar(
+      title: new Text("Profile"),
+      centerTitle: true,
     );
   }
 }
