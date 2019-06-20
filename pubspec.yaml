@@ -48,6 +48,7 @@ flutter:
   assets:
     - Login_background.jpg
     - default_user_img.png
+    - SplashScreen_background.jpg
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
