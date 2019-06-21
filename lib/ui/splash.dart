@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
+import 'package:http/http.dart' as http;
+
 import 'package:ntupartner/ui/login.dart';
+import 'package:ntupartner/common/functions/showDialogWithSingleButton.dart';
 
 class SplashScreen extends StatefulWidget {
 
@@ -23,7 +26,9 @@ class SplashScreenState extends State<SplashScreen> {
 
   Future<Timer> loadData() async {
     _testInternetConnection();
-    _testWebServerConnection();
+    //_testWebServerConnection();
+    _testServerConnection();
+
     return new Timer(Duration(seconds: 3), onDoneLoading);
   }
 
@@ -64,26 +69,48 @@ class SplashScreenState extends State<SplashScreen> {
           msg: "Please ensure you have internet connection!",
           toastLength: Toast.LENGTH_LONG,
       );
+      showDialogSingleButton(
+          context,
+          'No Internet Connection',
+          'Please ensure you have internet connection for the application to work.',
+          'Ok');
       await new Future.delayed(const Duration(seconds: 3));
       exit(0);  //Close app
     }
   }
 
-  void _testWebServerConnection () async {
+  void _testWebServerConnection () async {  //Use this when website has a domain name
     try {
-      final result = await InternetAddress.lookup('172.21.148.187');  //change to web server when up
+      final result = await InternetAddress.lookup('http://172.21.148.187:8000/accounts/login');  //change to web server when up
       if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
         Fluttertoast.showToast(
           msg: "Connected",
         );
       }
     } on SocketException catch (_) {
-      Fluttertoast.showToast(
-        msg: "Server might be down or under maintanence, please try again later",
-        toastLength: Toast.LENGTH_LONG,
-      );
+      showDialogSingleButton(
+          context,
+          'Unable to connect to server',
+          'Server might be down or under maintanence, please try again later.',
+          'Ok');
       await new Future.delayed(const Duration(seconds: 3));
       //exit(0);  //Close app
+    }
+  }
+  void _testServerConnection() async {  //for now use this to check connection
+    final response =
+    await http.get('http://172.21.148.187:8000/accounts/login');
+
+    if (response.statusCode == 200) {
+      Fluttertoast.showToast(
+        msg: "Connected",
+      );
+    } else {
+      showDialogSingleButton( 
+          context,
+          'Unable to connect to server',
+          'Server might be down or under maintanence, please try again later.',
+          'Ok');
     }
   }
 }
