@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'match_placeholder.dart';
-import 'history_placeholder.dart';
-import 'login.dart';
-import 'setting.dart';
-import 'profile.dart';
+import 'package:ntupartner/ui/match_placeholder.dart';
+import 'package:ntupartner/ui/history_placeholder.dart';
+import 'package:ntupartner/ui/login.dart';
+import 'package:ntupartner/ui/setting.dart';
+import 'package:ntupartner/ui/profile.dart';
 //import 'package:flutter/help.dart';
 //import 'package:flutter/login.dart';
 

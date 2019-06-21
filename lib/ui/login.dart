@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'mainpage.dart';
-import 'passreset.dart';
-import 'registration.dart';
+import 'package:ntupartner/ui/mainpage.dart';
+import 'package:ntupartner/ui/passreset.dart';
+import 'package:ntupartner/ui/registration.dart';
 
 class LoginPage extends StatefulWidget {
   @override

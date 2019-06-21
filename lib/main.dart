@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'splash.dart';
+import 'package:ntupartner/ui/splash.dart';
 
 void main() => runApp(MyApp());
 

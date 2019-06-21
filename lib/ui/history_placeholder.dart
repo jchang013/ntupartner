@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'model/history_model.dart';
+import 'package:ntupartner/model/history_model.dart';
 
 class PlaceholderHistory extends StatefulWidget {
   @override
