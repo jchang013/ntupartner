@@ -8,7 +8,7 @@ import 'package:ntupartner/common/functions/getToken.dart';
 import 'package:ntupartner/common/functions/saveLogout.dart';
 
 Future<LoginModel> requestLogoutAPI(BuildContext context) async {
-  final url = "https://www.yoururl.com/logout";
+  final url = "http://162.21.148.187/accounts/logout";
 
   var token;
 

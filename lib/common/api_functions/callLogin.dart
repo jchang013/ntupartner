@@ -6,9 +6,10 @@ import 'dart:convert';
 import 'package:ntupartner/common/functions/showDialogWithSingleButton.dart';
 import 'package:ntupartner/model/login_model.dart';
 import 'package:ntupartner/common/functions/saveCurrentLogin.dart';
+import 'package:ntupartner/ui/mainpage.dart';
 
 Future<LoginModel> requestLoginAPI(BuildContext context, String username, String password) async {
-  final url = "http://162.21.148.187/login";
+  final url = "http://162.21.148.187/accounts/login";
 
   Map<String, String> body = {
     'username': username,
@@ -25,14 +26,20 @@ Future<LoginModel> requestLoginAPI(BuildContext context, String username, String
     var user = new LoginModel.fromJson(responseJson);
 
     saveCurrentLogin(responseJson);
-    Navigator.of(context).pushReplacementNamed('/HomeScreen');
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainPage()));
 
     return LoginModel.fromJson(responseJson);
   } else {
     final responseJson = json.decode(response.body);
 
     saveCurrentLogin(responseJson);
-    showDialogSingleButton(context, "Unable to Login", "You may have supplied an invalid 'Username' / 'Password' combination. Please try again or contact your support representative.", "OK");
+    showDialogSingleButton(
+        context,
+        "Unable to Login",
+        "You may have supplied an invalid username or password. Please try again or contact the administrators.",
+        "Ok");
     return null;
     }
 }
