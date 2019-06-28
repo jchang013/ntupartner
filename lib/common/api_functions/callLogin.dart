@@ -9,7 +9,7 @@ import 'package:ntupartner/common/functions/saveCurrentLogin.dart';
 import 'package:ntupartner/ui/mainpage.dart';
 
 Future<LoginModel> requestLoginAPI(BuildContext context, String username, String password) async {
-  final url = "http://162.21.148.187/accounts/login";
+  final url = "http://172.21.148.187:8000/accounts/login/";
 
   Map<String, String> body = {
     'username': username,
@@ -24,7 +24,7 @@ Future<LoginModel> requestLoginAPI(BuildContext context, String username, String
   if (response.statusCode == 200) {   //Will have to add in other response code
     final responseJson = json.decode(response.body);
     var user = new LoginModel.fromJson(responseJson);
-
+    print('$user');
     saveCurrentLogin(responseJson);
     Navigator.pushReplacement(
         context,

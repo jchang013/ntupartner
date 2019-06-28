@@ -26,7 +26,7 @@ class SplashScreenState extends State<SplashScreen> {
 
   Future<Timer> loadData() async {
     _testInternetConnection();
-    //_testWebServerConnection();
+    //_testWebServerConnection();   //Use this when dns to web server is available
     _testServerConnection();
 
     return new Timer(Duration(seconds: 3), onDoneLoading);

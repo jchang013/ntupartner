@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -11,25 +13,33 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _descriptionFilter = new TextEditingController();
   final TextEditingController _cosFilter = new TextEditingController();
 
+  final dobFormats = {
+    InputType.date: DateFormat('dd-MM-yyyy'),
+  };
+
+  InputType inputType = InputType.date;
+
   String _username = "";
-  String _gender = "";
+  String _gender = "Male";
   String _name = "";
-  String _dob = "";     //Date of birth
+  DateTime _dob;     //Date of birth
   String _description = "";
-  String _country = "";
-  String _religion = "";
+  String _country = "-------";
+  String _religion = "-------";
   String _cos = "";   //course of study
-  String _yom = "";   //year of matriculation
+  DateTime _yom;   //year of matriculation
 
   bool _emptyUsernameField = false;
   bool _emptyNameField = false;
   bool _emptyDescriptionField = false;
   bool _emptyCosField = false;
 
+
   _RegistrationPageState() {
     _usernameFilter.addListener(_usernameListen);
     _nameFilter.addListener(_nameListen);
     _descriptionFilter.addListener(_descriptionListen);
+    _cosFilter.addListener(_cosListen);
   }
 
   void _usernameListen() {
@@ -44,6 +54,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _description = _descriptionFilter.text;
   }
 
+  void _cosListen() {
+    _cos = _cosFilter.text;
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -56,16 +70,15 @@ class _RegistrationPageState extends State<RegistrationPage> {
           colorBlendMode: BlendMode.darken,
           color: Colors.black38,
         ),
-        new Container(
+        new ListView(
           padding: EdgeInsets.all(16.0),
-          child: new Column(
-            children: <Widget>[
-              _buildFields(),
-              _buildButtons(),
-            ],
-          ),
+          children: <Widget>[
+            _buildFields(),
+            _buildButtons(),
+          ],
         ),
-      ]),
+        ]
+      )
     );
   }
 
@@ -79,6 +92,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   Widget _buildFields() {
     return new Container(
       child: new Column(
+
         children: <Widget>[
           new Container(
             child: new TextField(
@@ -91,6 +105,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
           ),
+          new Divider(height: 15.0,color: Colors.transparent,),
           new Container(
             child: new TextField(
               style: TextStyle(color: Colors.white),
@@ -102,6 +117,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
             ),
           ),
+          new Divider(height: 15.0,color: Colors.transparent,),
           new Container(
             child: new TextField(
               keyboardType: TextInputType.multiline,
@@ -117,7 +133,134 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 errorText: _emptyDescriptionField ? 'Field Can\'t Be Empty' : null,
               ),
             ),
-          )
+          ),
+          new Divider(height: 15.0,color: Colors.transparent,),
+          new DateTimePickerFormField(
+            inputType: inputType,
+            style: TextStyle(color: Colors.white),
+            format: DateFormat('d MMMM yyyy'),
+            editable: false,
+            decoration: InputDecoration(
+                labelText: 'Date of birth',
+                labelStyle: new TextStyle(color: Colors.white),
+                hasFloatingPlaceholder: false),
+            onChanged: (dt) => setState(() => _dob = dt),
+          ),
+          new Divider(height: 15.0,color: Colors.transparent,),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text('Gender: ', style: TextStyle(fontSize: 18, color: Colors.white),),
+              Container(
+                color: Colors.white24,
+                child: DropdownButton<String>(
+                  style: TextStyle(color: Colors.black),
+                  value: _gender,
+                  onChanged: (String newValue) {
+                    setState(() {
+                    _gender = newValue;
+                      });
+                    },
+                  items: <String>['Male', 'Female', 'Others']
+                    .map<DropdownMenuItem<String>>((String value) {
+                      return DropdownMenuItem<String>(
+                        value: value,
+                        child: Text(value),
+                      );
+                    })
+                      .toList(),
+                  ),
+              )
+            ],
+          ),
+          new Divider(height: 15.0,color: Colors.transparent,),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text('Country of origin: ', style: TextStyle(fontSize: 18, color: Colors.white),),
+              Container(
+                color: Colors.white24,
+                child: DropdownButton<String>(
+                  style: TextStyle(color: Colors.black),
+                  value: _country,
+                  onChanged: (String newValue) {
+                  setState(() {
+                    _country = newValue;
+                  });
+                },
+                items: <String>['-------', 'Singapore', 'Others']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                })
+                    .toList(),
+                ),
+              )
+            ],
+          ),
+          new Divider(height: 15.0,color: Colors.transparent,),
+          new Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text('Religion: ', style: TextStyle(fontSize: 18, color: Colors.white),),
+              Container(
+                color: Colors.white24,
+                child: DropdownButton<String>(
+                  style: TextStyle(color: Colors.black),
+                  value: _religion,
+                  onChanged: (String newValue) {
+                  setState(() {
+                    _religion = newValue;
+                  });
+                },
+                items: <String>['-------',
+                                'Agnostic',
+                                'Atheist',
+                                'Buddhism',
+                                'Catholicism',
+                                'Christianity',
+                                'Hinduism',
+                                'Islam',
+                                'Protestantism',
+                                'Others']
+                    .map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                })
+                    .toList(),
+                ),
+              )
+            ],
+          ),
+          new Divider(height: 15.0,color: Colors.transparent,),
+          new Container(
+            child: new TextField(
+              style: TextStyle(color: Colors.white),
+              controller: _cosFilter,
+              decoration: new InputDecoration(
+                labelText: 'Course of study',
+                labelStyle: new TextStyle(color: Colors.white),
+                errorText: _emptyCosField ? 'Field Can\'t Be Empty' : null,
+              ),
+            ),
+          ),
+          new Divider(height: 15.0,color: Colors.transparent,),
+          new Container(
+            child: new TextField(
+              style: TextStyle(color: Colors.white),
+              controller: _cosFilter,
+              decoration: new InputDecoration(
+                labelText: 'Year of matriculation',
+                labelStyle: new TextStyle(color: Colors.white),
+                errorText: _emptyCosField ? 'Field Can\'t Be Empty' : null,
+              ),
+            ),
+          ),
+          new Divider(height: 20.0,color: Colors.transparent,),
         ],
       ),
     );
@@ -133,6 +276,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
               onPressed: () {
                 setState(() {
                   //check field
+                  _createAccountPressed();
                 });
               }
           ),
@@ -148,7 +292,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
     print('Registering with \n '
         '$_username as username \n'
         '$_name as name \n'
-        '$_description as description');
+        '$_description as description \n'
+        '$_dob as date of birth \n'
+        '$_gender as gender \n'
+        '$_cos as course of study \n' );
   }
 
 }

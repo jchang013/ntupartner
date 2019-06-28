@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:ntupartner/ui/mainpage.dart';
 import 'package:ntupartner/ui/passreset.dart';
 import 'package:ntupartner/ui/registration.dart';
+
+import 'package:ntupartner/common/api_functions/callLogin.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -9,28 +12,28 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final TextEditingController _emailFilter = new TextEditingController();
+  final TextEditingController _usernameFilter = new TextEditingController();
   final TextEditingController _passwordFilter = new TextEditingController();
   final TextEditingController _passwordConfirmFilter = new TextEditingController();
 
-  String _email = "";
+  String _username = "";
   String _password = "";
   String _passwordConfirm = "";
 
-  bool _emptyEmailField = false;
+  bool _emptyUsernameField = false;
   bool _emptyPassField = false;
   bool _emptyPassConfirmField = false;
 
   FormType _form = FormType.login;
 
   _LoginPageState() {
-    _emailFilter.addListener(_emailListen);
+    _usernameFilter.addListener(_usernameListen);
     _passwordFilter.addListener(_passwordListen);
     _passwordConfirmFilter.addListener(_passwordConfirmListen);
   }
 
-  void _emailListen() {
-    _email = _emailFilter.text;
+  void _usernameListen() {
+    _username = _usernameFilter.text;
   }
 
   void _passwordListen() {
@@ -90,11 +93,11 @@ class _LoginPageState extends State<LoginPage> {
             new Container(
               child: new TextField(
                 style: TextStyle(color: Colors.white),
-                controller: _emailFilter,
+                controller: _usernameFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'Username',
                     labelStyle: new TextStyle(color: Colors.white),
-                    errorText: _emptyEmailField ? 'Field Can\'t Be Empty' : null,
+                    errorText: _emptyUsernameField ? 'Field Can\'t Be Empty' : null,
                 ),
               ),
             ),
@@ -121,11 +124,11 @@ class _LoginPageState extends State<LoginPage> {
             new Container(
               child: new TextField(
                 style: TextStyle(color: Colors.white),
-                controller: _emailFilter,
+                controller: _usernameFilter,
                 decoration: new InputDecoration(
-                    labelText: 'Email',
+                    labelText: 'Username',
                     labelStyle: new TextStyle(color: Colors.white),
-                    errorText: _emptyEmailField ? 'Field Can\'t Be Empty' : null,
+                    errorText: _emptyUsernameField ? 'Field Can\'t Be Empty' : null,
                 ),
               ),
             ),
@@ -168,9 +171,9 @@ class _LoginPageState extends State<LoginPage> {
               child: new Text('Login'),
               onPressed: () {
                 setState(() {
-                  _emailFilter.text.isEmpty ? _emptyEmailField = true : _emptyEmailField = false;
+                  _usernameFilter.text.isEmpty ? _emptyUsernameField = true : _emptyUsernameField = false;
                   _passwordFilter.text.isEmpty ? _emptyPassField = true : _emptyPassField = false;
-                  if (_emptyEmailField == false && _emptyPassField == false){
+                  if (_emptyUsernameField == false && _emptyPassField == false){
                     _loginPressed ();
                   } else {
                     print('Empty email or pass field on logging in');
@@ -199,10 +202,10 @@ class _LoginPageState extends State<LoginPage> {
               child: new Text('Create an Account'),
               onPressed: () {
                 setState(() {
-                  _emailFilter.text.isEmpty ? _emptyEmailField = true : _emptyEmailField = false;
+                  _usernameFilter.text.isEmpty ? _emptyUsernameField = true : _emptyUsernameField = false;
                   _passwordFilter.text.isEmpty ? _emptyPassField = true : _emptyPassField = false;
                   _passwordConfirmFilter.text.isEmpty ? _emptyPassConfirmField = true : _emptyPassConfirmField = false;
-                  if (_emptyEmailField == false && _emptyPassField == false && _emptyPassConfirmField == false){
+                  if (_emptyUsernameField == false && _emptyPassField == false && _emptyPassConfirmField == false){
                     _createAccountPressed ();
                   } else {
                     print('Empty email or password field on creating account');
@@ -223,21 +226,24 @@ class _LoginPageState extends State<LoginPage> {
   void _loginPressed () {
     //to add pass login information to authenticate user
     print('Login');
-    Navigator.pushReplacement(
+    print('Logging in with username: $_username and password: $_password');
+    /*Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MainPage())
-    );
+    );*/
+    requestLoginAPI(context, _username, _password);
   }
 
   void _createAccountPressed () {
     //to add pass account creation information the backend server
     //navigation to full registration page with all user details required if email has not been used
     //check if email has been used
+    print('Creeat Account');
+    print('Creating account with username: $_username and password: $_password');
     Navigator.push(
         context,
         MaterialPageRoute(builder: (context) => RegistrationPage())
     );
-    print('Creeat Account');
   }
 
   void _passwordReset () {
