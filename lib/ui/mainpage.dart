@@ -7,8 +7,12 @@ import 'package:ntupartner/ui/profile.dart';
 //import 'package:flutter/help.dart';
 //import 'package:flutter/login.dart';
 
+import 'package:ntupartner/model/user_model.dart';
+
 
 class MainPage extends StatefulWidget {
+  final UserModel user;
+  MainPage({Key key, @required this.user}) : super(key: key);
   State<StatefulWidget> createState() {
     return _MainPageState();
   }
@@ -27,6 +31,7 @@ class Menu{
 }
 
 class _MainPageState extends State<MainPage> {
+
   int _currentIndex = 0;
   final List<Widget> _children = [
     PlaceholderUser(),
@@ -46,7 +51,7 @@ class _MainPageState extends State<MainPage> {
             onPressed: () {
               Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ProfilePage()));
+                  MaterialPageRoute(builder: (context) => ProfilePage(user: widget.user)));
             },
           ),
         actions: <Widget>[

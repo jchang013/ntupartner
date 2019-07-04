@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
 
+import 'package:ntupartner/model/user_model.dart';
+
 class ProfilePage extends StatefulWidget {
+  final UserModel user;
+  ProfilePage({Key key, @required this.user}) : super(key: key);
   State<StatefulWidget> createState() {
     return _ProfilePageState();
   }
@@ -22,7 +26,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text('<<name>>'),
+                  Text(widget.user.fullname),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
@@ -31,7 +35,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text('<<description>>'),
+                  Text(widget.user.description),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )

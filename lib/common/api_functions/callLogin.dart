@@ -5,11 +5,12 @@ import 'dart:convert';
 
 import 'package:ntupartner/common/functions/showDialogWithSingleButton.dart';
 import 'package:ntupartner/model/login_model.dart';
+import 'package:ntupartner/model/user_model.dart';
 import 'package:ntupartner/common/functions/saveCurrentLogin.dart';
 import 'package:ntupartner/ui/mainpage.dart';
 
-Future<LoginModel> requestLoginAPI(BuildContext context, String username, String password) async {
-  final url = "http://172.21.148.187:8000/accounts/login/";
+Future<UserModel> requestLoginAPI(BuildContext context, String username, String password) async {
+  final url = "http://172.21.148.187:8000/accounts/authenticate/";
 
   Map<String, String> body = {
     'username': username,
@@ -23,18 +24,19 @@ Future<LoginModel> requestLoginAPI(BuildContext context, String username, String
 
   if (response.statusCode == 200) {   //Will have to add in other response code
     final responseJson = json.decode(response.body);
-    var user = new LoginModel.fromJson(responseJson);
-    print('$user');
-    saveCurrentLogin(responseJson);
+    var user = new UserModel.fromJson(responseJson);  //change back to login model
+    print('${user.fullname}');
+
+    //saveCurrentLogin(responseJson);
     Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainPage()));
+        MaterialPageRoute(builder: (context) => MainPage(user: user)));
 
-    return LoginModel.fromJson(responseJson);
+    return UserModel.fromJson(responseJson);
   } else {
     final responseJson = json.decode(response.body);
 
-    saveCurrentLogin(responseJson);
+    //saveCurrentLogin(responseJson);
     showDialogSingleButton(
         context,
         "Unable to Login",

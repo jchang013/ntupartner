@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
+import 'package:ntupartner/common/functions/getCurrentYear.dart';
+
 class RegistrationPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => new _RegistrationPageState();
@@ -12,6 +14,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _nameFilter = new TextEditingController();
   final TextEditingController _descriptionFilter = new TextEditingController();
   final TextEditingController _cosFilter = new TextEditingController();
+  final TextEditingController _yomFilter = new TextEditingController();
 
   final dobFormats = {
     InputType.date: DateFormat('dd-MM-yyyy'),
@@ -27,12 +30,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
   String _country = "-------";
   String _religion = "-------";
   String _cos = "";   //course of study
-  DateTime _yom;   //year of matriculation
+  int _yom = (getCurrentYear() + 2);   //year of matriculation
+  String _yomS = "";
 
   bool _emptyUsernameField = false;
   bool _emptyNameField = false;
   bool _emptyDescriptionField = false;
   bool _emptyCosField = false;
+  bool _emptyYomField = false;
 
 
   _RegistrationPageState() {
@@ -40,6 +45,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _nameFilter.addListener(_nameListen);
     _descriptionFilter.addListener(_descriptionListen);
     _cosFilter.addListener(_cosListen);
+    _yomFilter.addListener(_yomListen);
   }
 
   void _usernameListen() {
@@ -56,6 +62,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   void _cosListen() {
     _cos = _cosFilter.text;
+  }
+
+  void _yomListen() {
+    _yomS = _yomFilter.text;
   }
 
 
@@ -252,15 +262,16 @@ class _RegistrationPageState extends State<RegistrationPage> {
           new Container(
             child: new TextField(
               style: TextStyle(color: Colors.white),
-              controller: _cosFilter,
+              controller: _yomFilter,
               decoration: new InputDecoration(
                 labelText: 'Year of matriculation',
                 labelStyle: new TextStyle(color: Colors.white),
-                errorText: _emptyCosField ? 'Field Can\'t Be Empty' : null,
+                errorText: _emptyYomField ? 'Field Can\'t Be Empty' : null,
               ),
             ),
           ),
           new Divider(height: 20.0,color: Colors.transparent,),
+
         ],
       ),
     );
