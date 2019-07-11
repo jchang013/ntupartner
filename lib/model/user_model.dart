@@ -9,9 +9,14 @@ class UserModel {
   final String date_of_birth;
   final String gender;
   final int year_of_matriculation;
+  final String religion;
+  final String country_of_origin;
+  final String hobbies;
+  final String avatar_url;
 
   UserModel(this.token, this.id, this.fullname, this.ban_flag, this.course_of_study, this.date_of_birth,
-      this.description, this.gender, this.interested_flag, this.year_of_matriculation);
+      this.description, this.gender, this.interested_flag, this.year_of_matriculation, this.avatar_url,
+      this.country_of_origin, this.hobbies, this.religion);
 
   UserModel.fromJson(Map<String, dynamic> json)
       : ban_flag = json['ban_flag'],
@@ -23,7 +28,11 @@ class UserModel {
         id = json['id'],
         interested_flag = json['interested_flag'],
         token = json['token'],
-        year_of_matriculation = json['year_of_matriculation'];
+        year_of_matriculation = json['year_of_matriculation'],
+        religion = json['religion'],
+        country_of_origin = json['country_of_origin'],
+        hobbies = json['hobbies'],
+        avatar_url = json['avatar'];
 
   Map<String, dynamic> toJson() =>
       {
@@ -37,5 +46,9 @@ class UserModel {
         'interested_flag' : interested_flag,
         'token' : token,
         'year_of_matriculation' : year_of_matriculation,
+        'religion' : religion,
+        'country_of_origin': country_of_origin,
+        'hobbies' : hobbies,
+        'avatar' : avatar_url,
       };
 }

@@ -44,7 +44,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text('<<hobby>>'),
+                  Text(widget.user.hobbies),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
@@ -53,7 +53,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text('<<country>>'),
+                  Text(widget.user.country_of_origin),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text('<<regiglion>>'),
+                  Text(widget.user.religion),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
