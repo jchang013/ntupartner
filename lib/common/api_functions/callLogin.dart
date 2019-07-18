@@ -27,13 +27,13 @@ Future<UserModel> requestLoginAPI(BuildContext context, String username, String 
     var user = new UserModel.fromJson(responseJson);  //change back to login model
     print('${user.fullname}');
 
-    //saveCurrentLogin(responseJson);
+    saveCurrentLogin(responseJson);
     Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => MainPage(user: user)));
 
     return UserModel.fromJson(responseJson);
-  } else {
+  } else if (response.statusCode == 400){ //Incorrect credentials
     final responseJson = json.decode(response.body);
 
     //saveCurrentLogin(responseJson);
@@ -43,5 +43,19 @@ Future<UserModel> requestLoginAPI(BuildContext context, String username, String 
         "You may have supplied an invalid username or password. Please try again or contact the administrators.",
         "Ok");
     return null;
-    }
+    } else if (response.statusCode == 404){ //Page not found
+
+    showDialogSingleButton(
+        context,
+        "Unable to Login",
+        "Unable to reach server. Please try again later or contact the administrators.",
+        "Ok");
+  } else {  //Final case
+
+    showDialogSingleButton(
+        context,
+        "Unable to Login",
+        "Unknown Error. Please try again or contact the administrators.",
+        "Ok");
+  }
 }

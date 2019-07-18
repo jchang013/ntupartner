@@ -5,6 +5,15 @@ saveLogout() async {
 
   await preferences.setString('LastUser', "");
   await preferences.setString('LastToken', "");
-  await preferences.setString('LastEmail', "");
-  await preferences.setInt('LastUserId', 0);
+  await preferences.setInt('LastId', 0);
+  await preferences.setBool('LastInterestedFlag', false);
+  await preferences.setBool('LastBanFlag', false);
+  await preferences.setString('LastDescription', '');
+  await preferences.setString('LastCourseOfStudy', '');
+  await preferences.setString('LastDateOfBirth', '');
+  await preferences.setString('LastGender', '');
+  await preferences.setInt('LastYearOfMatriculation', 0);
+  await preferences.setString('LastReligion', '');
+  await preferences.setString('LastHobbies', '');
+  await preferences.setString('LastAvatarURL', '');
 }

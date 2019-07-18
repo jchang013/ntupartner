@@ -14,14 +14,15 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    String imageURL = 'http://172.21.148.187:8000' + widget.user.avatar_url;
+
     return Scaffold(
       appBar: _buildBar(context),
       body: Container(
           child: new Column(
             children: <Widget>[
-              new Image(
-                  alignment: Alignment(0.0, -0.95),
-                  image: new AssetImage('assets/default_user_img.png')
+              new Image.network(
+                  imageURL
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
