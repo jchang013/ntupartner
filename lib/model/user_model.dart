@@ -14,9 +14,10 @@ class UserModel {
   final String hobbies;
   final String avatar_url;
 
-  UserModel(this.token, this.id, this.fullname, this.ban_flag, this.course_of_study, this.date_of_birth,
-      this.description, this.gender, this.interested_flag, this.year_of_matriculation, this.avatar_url,
-      this.country_of_origin, this.hobbies, this.religion);
+  UserModel(this.token, this.id, this.fullname, this.interested_flag, this.ban_flag, this.description,
+      this.course_of_study, this.date_of_birth,
+       this.gender, this.year_of_matriculation, this.religion,
+      this.country_of_origin, this.hobbies, this.avatar_url);
 
   UserModel.fromJson(Map<String, dynamic> json)
       : ban_flag = json['ban_flag'],

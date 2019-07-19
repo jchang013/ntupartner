@@ -9,6 +9,8 @@ import 'package:ntupartner/ui/profile.dart';
 
 import 'package:ntupartner/model/user_model.dart';
 
+import 'package:ntupartner/common/functions/saveLogout.dart';
+
 
 class MainPage extends StatefulWidget {
   final UserModel user;
@@ -126,6 +128,7 @@ class _MainPageState extends State<MainPage> {
             new FlatButton(
               child: new Text("Sign Out"),
               onPressed: () {
+                saveLogout();
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(builder: (context) => LoginPage()));
