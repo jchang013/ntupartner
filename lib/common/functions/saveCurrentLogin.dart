@@ -21,6 +21,7 @@ saveCurrentLogin(Map responseJson) async {
   var gender = (responseJson != null && responseJson.isNotEmpty) ? UserModel.fromJson(responseJson).gender : "";
   var year_of_matriculation = (responseJson != null && responseJson.isNotEmpty) ? UserModel.fromJson(responseJson).year_of_matriculation : 0;
   var religion = (responseJson != null && responseJson.isNotEmpty) ? UserModel.fromJson(responseJson).religion : "";
+  var country_of_origin = (responseJson != null && responseJson.isNotEmpty) ? UserModel.fromJson(responseJson).country_of_origin : "";
   var hobbies = (responseJson != null && responseJson.isNotEmpty) ? UserModel.fromJson(responseJson).hobbies : "";
   var avatar_url = (responseJson != null && responseJson.isNotEmpty) ? UserModel.fromJson(responseJson).avatar_url : "";
 
@@ -35,6 +36,7 @@ saveCurrentLogin(Map responseJson) async {
   await preferences.setString('LastGender', (gender != null && gender.length > 0) ? gender : "");
   await preferences.setInt('LastYearOfMatriculation', (year_of_matriculation != null && year_of_matriculation > 0) ? year_of_matriculation : 0);
   await preferences.setString('LastReligion', (religion != null && religion.length > 0) ? religion : "");
+  await preferences.setString('LastCountryOfOrigin', (religion != null && country_of_origin.length > 0) ? religion : "");
   await preferences.setString('LastHobbies', (hobbies != null && hobbies.length > 0) ? hobbies : "");
   await preferences.setString('LastAvatarUrl', (avatar_url != null && avatar_url.length > 0) ? avatar_url : "");
 

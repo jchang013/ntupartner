@@ -27,7 +27,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(widget.user.fullname),
+                  Text(widget.user.fullname.toString()),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
@@ -36,7 +36,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(widget.user.description),
+                  Text(widget.user.description.toString()),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
@@ -45,7 +45,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(widget.user.hobbies),
+                  Text(widget.user.hobbies.toString()),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
@@ -54,7 +54,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(widget.user.country_of_origin),
+                  Text(widget.user.country_of_origin.toString()),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )
@@ -63,7 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Text(widget.user.religion),
+                  Text(widget.user.religion.toString()),
                   IconButton(
                     icon: Icon(Icons.edit),
                   )

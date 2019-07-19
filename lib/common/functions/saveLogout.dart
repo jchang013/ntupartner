@@ -14,6 +14,7 @@ saveLogout() async {
   await preferences.setString('LastGender', '');
   await preferences.setInt('LastYearOfMatriculation', 0);
   await preferences.setString('LastReligion', '');
+  await preferences.setString('LastCountryOfOrign', '');
   await preferences.setString('LastHobbies', '');
   await preferences.setString('LastAvatarUrl', '');
 }

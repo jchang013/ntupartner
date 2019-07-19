@@ -1,23 +1,42 @@
 class UserModel {
-  final String token;
-  final int id;
-  final String fullname;
-  final bool interested_flag;
-  final bool ban_flag;
-  final String description;
-  final String course_of_study;
-  final String date_of_birth;
-  final String gender;
-  final int year_of_matriculation;
-  final String religion;
-  final String country_of_origin;
-  final String hobbies;
-  final String avatar_url;
+  String token;
+  int id;
+  String fullname;
+  bool interested_flag;
+  bool ban_flag;
+  String description;
+  String course_of_study;
+  String date_of_birth;
+  String gender;
+  int year_of_matriculation;
+  String religion;
+  String country_of_origin;
+  String hobbies;
+  String avatar_url;
 
-  UserModel(this.token, this.id, this.fullname, this.interested_flag, this.ban_flag, this.description,
+  /*UserModel(this.token, this.id, this.fullname, this.interested_flag, this.ban_flag, this.description,
       this.course_of_study, this.date_of_birth,
        this.gender, this.year_of_matriculation, this.religion,
       this.country_of_origin, this.hobbies, this.avatar_url);
+*/
+  UserModel(String token, int id, String fullname, bool interested_flag, bool ban_flag, String description,
+      String course_of_study, String date_of_birth, String gender, int year_of_matriculation,
+      String religion, String country_of_origin, String hobbies, String avatar_url) {
+    this.token = token;
+    this.id = id;
+    this.fullname = fullname;
+    this.interested_flag = interested_flag;
+    this.ban_flag = ban_flag;
+    this.description = description;
+    this.course_of_study = course_of_study;
+    this.date_of_birth = date_of_birth;
+    this.gender = gender;
+    this.year_of_matriculation = year_of_matriculation;
+    this.religion = religion;
+    this.country_of_origin = country_of_origin;
+    this.hobbies = hobbies;
+    this.avatar_url = avatar_url;
+  }
 
   UserModel.fromJson(Map<String, dynamic> json)
       : ban_flag = json['ban_flag'],

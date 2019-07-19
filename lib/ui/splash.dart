@@ -44,8 +44,8 @@ class SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => LoginPage()));
     } else {
-      String token = (preferences.getString('LastUser'));
-      int id = (preferences.getInt('LastID'));
+      String token = (preferences.getString('LastToken'));
+      int id = (preferences.getInt('LastId'));
       bool interested_flag = (preferences.getBool('LastInterestedFlag'));
       bool ban_flag = (preferences.getBool('LastBanFlag'));
       String description = (preferences.getString('LastDescription'));
