@@ -36,7 +36,7 @@ saveCurrentLogin(Map responseJson) async {
   await preferences.setString('LastGender', (gender != null && gender.length > 0) ? gender : "");
   await preferences.setInt('LastYearOfMatriculation', (year_of_matriculation != null && year_of_matriculation > 0) ? year_of_matriculation : 0);
   await preferences.setString('LastReligion', (religion != null && religion.length > 0) ? religion : "");
-  await preferences.setString('LastCountryOfOrigin', (religion != null && country_of_origin.length > 0) ? religion : "");
+  await preferences.setString('LastCountryOfOrigin', (country_of_origin != null && country_of_origin.length > 0) ? country_of_origin : "");
   await preferences.setString('LastHobbies', (hobbies != null && hobbies.length > 0) ? hobbies : "");
   await preferences.setString('LastAvatarUrl', (avatar_url != null && avatar_url.length > 0) ? avatar_url : "");
 

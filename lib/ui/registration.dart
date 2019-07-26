@@ -15,6 +15,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final TextEditingController _descriptionFilter = new TextEditingController();
   final TextEditingController _cosFilter = new TextEditingController();
   final TextEditingController _yomFilter = new TextEditingController();
+  final TextEditingController _instagramFilter = new TextEditingController();
 
   final dobFormats = {
     InputType.date: DateFormat('dd-MM-yyyy'),
@@ -32,12 +33,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
   String _cos = "";   //course of study
   int _yom = (getCurrentYear() + 2);   //year of matriculation
   String _yomS = "";
+  String _instagram = '';
 
   bool _emptyUsernameField = false;
   bool _emptyNameField = false;
   bool _emptyDescriptionField = false;
   bool _emptyCosField = false;
   bool _emptyYomField = false;
+  bool _emptyInstaField = false;
 
 
   _RegistrationPageState() {
@@ -46,6 +49,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
     _descriptionFilter.addListener(_descriptionListen);
     _cosFilter.addListener(_cosListen);
     _yomFilter.addListener(_yomListen);
+    _instagramFilter.addListener(_instagramListen);
   }
 
   void _usernameListen() {
@@ -66,6 +70,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   void _yomListen() {
     _yomS = _yomFilter.text;
+  }
+
+  void _instagramListen() {
+    _instagram = _instagramFilter.text;
   }
 
 
