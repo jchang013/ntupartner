@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 import 'package:ntupartner/common/functions/getCurrentYear.dart';
@@ -42,6 +44,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
   bool _emptyYomField = false;
   bool _emptyInstaField = false;
 
+  Future<File> imageFile;
+
+  //Open gallery
+  pickImageFromGallery(ImageSource source) {
+    setState(() {
+      imageFile = ImagePicker.pickImage(source: source);
+    });
+  }
 
   _RegistrationPageState() {
     _usernameFilter.addListener(_usernameListen);
@@ -74,6 +84,32 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   void _instagramListen() {
     _instagram = _instagramFilter.text;
+  }
+
+  Widget showImage() {
+    return FutureBuilder<File>(
+      future: imageFile,
+      builder: (BuildContext context, AsyncSnapshot<File> snapshot) {
+        if (snapshot.connectionState == ConnectionState.done &&
+            snapshot.data != null) {
+          return Image.file(
+            snapshot.data,
+            width: 300,
+            height: 300,
+          );
+        } else if (snapshot.error != null) {
+          return const Text(
+            'Error Picking Image',
+            textAlign: TextAlign.center,
+          );
+        } else {
+          return const Text(
+            'No Image Selected',
+            textAlign: TextAlign.center,
+          );
+        }
+      },
+    );
   }
 
 
@@ -277,6 +313,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 errorText: _emptyYomField ? 'Field Can\'t Be Empty' : null,
               ),
             ),
+          ),
+          new Divider(height: 20.0,color: Colors.transparent,),
+          new Container(
+            child: new TextField(
+              style: TextStyle(color: Colors.white),
+              controller: _instagramFilter,
+              decoration: new InputDecoration(
+                labelText: 'Instagram Username',
+                labelStyle: new TextStyle(color: Colors.white),
+                errorText: _emptyInstaField ? 'Field Can\'t Be Empty' : null,
+              ),
+            ),
+          ),
+          new Divider(height: 20.0,color: Colors.transparent,),
+          showImage(),
+          new RaisedButton(
+            child: Text("Select Image from Gallery"),
+            onPressed: () {
+              pickImageFromGallery(ImageSource.gallery);
+            },
           ),
           new Divider(height: 20.0,color: Colors.transparent,),
 
