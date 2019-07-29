@@ -21,8 +21,8 @@ class _ProfilePageState extends State<ProfilePage> {
       body: Container(
           child: new Column(
             children: <Widget>[
-              new Image.network(
-                  imageURL
+              new Image.file(
+                  widget.user.image
               ),
               new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

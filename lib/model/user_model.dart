@@ -1,3 +1,5 @@
+import 'dart:io';
+
 class UserModel {
   String token;
   int id;
@@ -13,6 +15,7 @@ class UserModel {
   String country_of_origin;
   String hobbies;
   String avatar_url;
+  File image;
 
   /*UserModel(this.token, this.id, this.fullname, this.interested_flag, this.ban_flag, this.description,
       this.course_of_study, this.date_of_birth,
@@ -71,4 +74,12 @@ class UserModel {
         'hobbies' : hobbies,
         'avatar' : avatar_url,
       };
+
+  setImage(File image) {
+    this.image = image;
+  }
+
+  getImage(){
+    return this.image;
+  }
 }
