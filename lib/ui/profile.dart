@@ -1,5 +1,7 @@
 
 import 'package:flutter/material.dart';
+import 'dart:typed_data';
+import 'dart:convert';
 
 import 'package:ntupartner/ui/editprofile.dart';
 
@@ -17,6 +19,9 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    //Uint8List _bytesImage;
+    //_bytesImage = base64.decode(test);
+
     String imageURL = 'http://172.21.148.187:8000' + widget.user.avatar_url;
     int birthyear = int.parse(widget.user.date_of_birth.substring(0,4));
     int age = getCurrentYear() - birthyear;
@@ -28,6 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
             padding: EdgeInsets.all(16.0),
             children: <Widget>[
               _buildImage(),
+              //new Image.memory(_bytesImage),
               new Divider(height: 18.0,color: Colors.transparent,),
               new Align(
                 alignment: Alignment.centerLeft,
@@ -114,14 +120,14 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildImage() {
-    if (widget.user.image == null) {
+    if (widget.user.imageBytes == null) {
       return new Image(
           alignment: Alignment(0.0, -0.95),
           image: new AssetImage('assets/default_user_img.png')
       );
     } else {
-      return new Image.file(
-          widget.user.image
+      return new Image.memory(
+          widget.user.imageBytes
       );
     }
   }

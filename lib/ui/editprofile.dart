@@ -1,5 +1,8 @@
 
 import 'package:flutter/material.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:intl/intl.dart';
+
 
 import 'package:ntupartner/model/user_model.dart';
 
@@ -12,7 +15,42 @@ class EditProfilePage extends StatefulWidget {
 }
 
 
-  class _EditPageState extends State<EditProfilePage> {
+class _EditPageState extends State<EditProfilePage> {
+
+  final dobFormats = {
+    InputType.date: DateFormat('dd-MM-yyyy'),
+  };
+
+  static DateTime initDob;
+  static String initDescription;
+  static String initCountry;
+  static String initReligion;
+  static String initCos;
+  static int initYom;
+
+  @override
+  void initState() {
+    super.initState();
+    initDescription = widget.user.description;
+
+  }
+
+  final TextEditingController _descriptionFilter = new TextEditingController(text: initDescription);
+  final TextEditingController _cosFilter = new TextEditingController();
+  final TextEditingController _yomFilter = new TextEditingController();
+
+  String _description = "";
+
+  bool _emptyDescriptionField = false;
+
+  _EditPageState() {
+    _descriptionFilter.addListener(_descriptionListen);
+  }
+
+  void _descriptionListen() {
+    _description = _descriptionFilter.text;
+  }
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -35,8 +73,12 @@ class EditProfilePage extends StatefulWidget {
                 ),
                 new Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    widget.user.description, style: new TextStyle(fontSize: 16,),),
+                  child: TextField(
+                    controller: _descriptionFilter,
+                    decoration: new InputDecoration(
+                        errorText: _emptyDescriptionField ? 'Field Can\'t Be Empty' : null
+                    ),
+                  ),
                 ),
                 new Divider(height: 18.0,color: Colors.transparent,),
                 new Align(
@@ -82,7 +124,8 @@ class EditProfilePage extends StatefulWidget {
                   child: Text(
                     '${widget.user.course_of_study}, ${widget.user.year_of_matriculation}', style: new TextStyle(fontSize: 16,),),
                 ),
-
+                new Divider(height: 18.0,color: Colors.transparent,),
+                _buildButtons(),
               ],
             )
         ),
@@ -97,3 +140,22 @@ class EditProfilePage extends StatefulWidget {
       centerTitle: true,
     );
   }
+
+Widget _buildButtons() {
+
+  return new Container(
+    child: new Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        new RaisedButton(
+            child: new Text('Save changes'),
+            onPressed: null
+        ),
+        new RaisedButton(
+            child: new Text('Discard changes and back'),
+            onPressed: null
+        ),
+      ],
+    ),
+  );
+}

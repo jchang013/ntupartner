@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 class UserModel {
   String token;
@@ -16,6 +17,7 @@ class UserModel {
   String hobbies;
   String avatar_url;
   File image;
+  Uint8List imageBytes;
 
   /*UserModel(this.token, this.id, this.fullname, this.interested_flag, this.ban_flag, this.description,
       this.course_of_study, this.date_of_birth,
@@ -79,7 +81,13 @@ class UserModel {
     this.image = image;
   }
 
-  getImage(){
+  File getImage(){
     return this.image;
+  }
+
+  set setImageBytes(Uint8List bytes) => this.imageBytes = bytes;
+
+  Uint8List getImageBytes() {
+    return this.imageBytes;
   }
 }
