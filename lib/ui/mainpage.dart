@@ -43,33 +43,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text('Main'),
-        automaticallyImplyLeading: false,
-        leading:
-          new IconButton(
-            icon: new Image.asset('assets/default_user_img.png'),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ProfilePage(user: widget.user)));
-            },
-          ),
-        actions: <Widget>[
-          PopupMenuButton<String>(
-            onSelected: choiceAction,
-            itemBuilder: (BuildContext context){
-              return Menu.choices.map((String choice){
-                return PopupMenuItem<String>(
-                  value: choice,
-                  child: Text(choice),
-                );
-              }).toList();
-            },
-          )
-        ],
-      ),
+      appBar: _buildBar(context),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
@@ -115,6 +89,36 @@ class _MainPageState extends State<MainPage> {
       print('SignOut');
       _showSignOutDialog();
     }
+  }
+
+  Widget _buildBar(BuildContext context) {
+    return new AppBar(
+      centerTitle: true,
+      title: Text('Main'),
+      automaticallyImplyLeading: false,
+      leading:
+      new IconButton(
+        icon: new Image.asset('assets/default_user_img.png'),
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ProfilePage(user: widget.user)));
+        },
+      ),
+      actions: <Widget>[
+        PopupMenuButton<String>(
+          onSelected: choiceAction,
+          itemBuilder: (BuildContext context){
+            return Menu.choices.map((String choice){
+              return PopupMenuItem<String>(
+                value: choice,
+                child: Text(choice),
+              );
+            }).toList();
+          },
+        )
+      ],
+    );
   }
   
   void _showSignOutDialog() {
