@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -57,6 +58,9 @@ class SplashScreenState extends State<SplashScreen> {
       String country_of_origin = (preferences.getString('LastCountryOfOrigin'));
       String hobbies = (preferences.getString('LastHobbies'));
       String avatar_url = (preferences.getString('LastAvatarUrl'));
+      /*String imageBytesString = (preferences.getString('LastImageBytesString'));
+
+      Uint8List imageBytes = new Uint8List.fromList(imageBytesString.codeUnits);*/
 
       var user = new UserModel(token, id, fullname, interested_flag, ban_flag,
       description, course_of_study, date_of_birth, gender, year_of_matriculation,

@@ -16,7 +16,7 @@ class UserModel {
   String country_of_origin;
   String hobbies;
   String avatar_url;
-  File image;
+  //File image;
   Uint8List imageBytes;
 
   /*UserModel(this.token, this.id, this.fullname, this.interested_flag, this.ban_flag, this.description,
@@ -77,13 +77,13 @@ class UserModel {
         'avatar' : avatar_url,
       };
 
-  setImage(File image) {
+  /*setImage(File image) {
     this.image = image;
   }
 
   File getImage(){
     return this.image;
-  }
+  }*/
 
   set setImageBytes(Uint8List bytes) => this.imageBytes = bytes;
 

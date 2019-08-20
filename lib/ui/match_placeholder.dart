@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:ntupartner/model/user_model.dart';
+
 class PlaceholderUser extends StatefulWidget {
-  @override
-  _PlaceholderUserState createState() => _PlaceholderUserState();
+  final String description;
+  PlaceholderUser({Key key, @required this.description}) : super(key: key);
+  State<StatefulWidget> createState() {
+    return _PlaceholderUserState();
+  }
 }
 
 class _PlaceholderUserState extends State<PlaceholderUser> {
@@ -85,7 +90,11 @@ class _PlaceholderUserState extends State<PlaceholderUser> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 new RawMaterialButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        _likedPressed();
+                      });
+                    },
                     child: new Icon(
                         Icons.favorite,
                         color: Colors.red,
@@ -96,7 +105,11 @@ class _PlaceholderUserState extends State<PlaceholderUser> {
                     padding: const EdgeInsets.all(15.0),
                   ),
                 new RawMaterialButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      _passPressed();
+                    });
+                  },
                   child: new Icon(
                     Icons.close,
                     color: Colors.black,
@@ -118,5 +131,14 @@ class _PlaceholderUserState extends State<PlaceholderUser> {
           )
       );
     }
+  }
+
+  void _likedPressed () {
+    print('Liked');
+  }
+
+  void _passPressed () {
+    print('Passed');
+    numOfMatch = numOfMatch - 1;
   }
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:ntupartner/ui/match_placeholder.dart';
 import 'package:ntupartner/ui/history_placeholder.dart';
 import 'package:ntupartner/ui/login.dart';
@@ -35,8 +38,51 @@ class Menu{
 class _MainPageState extends State<MainPage> {
 
   int _currentIndex = 0;
+
+  static String token;
+  static int id;
+  static String fullname;
+  static bool interested_flag;
+  static bool ban_flag;
+  static String description;
+  static String course_of_study;
+  static String date_of_birth;
+  static String gender;
+  static int year_of_matriculation;
+  static String religion;
+  static String country_of_origin;
+  static String hobbies;
+  static  String avatar_url;
+  static  File image;
+  static Uint8List imageBytes;
+
+  @override
+  void initState() {
+    super.initState();
+    token = widget.user.token;
+    id = widget.user.id;
+    fullname = widget.user.fullname;
+    interested_flag = widget.user.interested_flag;
+    ban_flag = widget.user.ban_flag;
+    description = widget.user.description;
+    course_of_study = widget.user.course_of_study;
+    date_of_birth = widget.user.date_of_birth;
+    gender = widget.user.gender;
+    year_of_matriculation = widget.user.year_of_matriculation;
+    religion = widget.user.religion;
+    country_of_origin = widget.user.country_of_origin;
+    hobbies = widget.user.hobbies;
+    avatar_url = widget.user.avatar_url;
+    imageBytes = widget.user.imageBytes;
+  }
+
+  UserModel user = new UserModel(token, id, fullname, interested_flag,
+      ban_flag, description, course_of_study, date_of_birth,
+      gender, year_of_matriculation, religion, country_of_origin,
+      hobbies, avatar_url);
+
   final List<Widget> _children = [
-    PlaceholderUser(),
+    PlaceholderUser(description: description),
     PlaceholderHistory()
   ];
 
