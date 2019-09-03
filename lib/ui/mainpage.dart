@@ -54,7 +54,7 @@ class _MainPageState extends State<MainPage> {
   static String hobbies;
   static  String avatar_url;
   static  File image;
-  static Uint8List imageBytes;
+  static String imageBytesInString;
 
   @override
   void initState() {
@@ -73,13 +73,13 @@ class _MainPageState extends State<MainPage> {
     country_of_origin = widget.user.country_of_origin;
     hobbies = widget.user.hobbies;
     avatar_url = widget.user.avatar_url;
-    imageBytes = widget.user.imageBytes;
+    imageBytesInString = widget.user.imageBytesInString;
   }
 
   UserModel user = new UserModel(token, id, fullname, interested_flag,
       ban_flag, description, course_of_study, date_of_birth,
       gender, year_of_matriculation, religion, country_of_origin,
-      hobbies, avatar_url);
+      hobbies, avatar_url, imageBytesInString);
 
   final List<Widget> _children = [
     PlaceholderUser(description: description),

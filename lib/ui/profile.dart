@@ -120,14 +120,15 @@ class _ProfilePageState extends State<ProfilePage> {
   }
 
   Widget _buildImage() {
-    if (widget.user.imageBytes == null) {
+    if (widget.user.imageBytesInString == null || widget.user.imageBytesInString == "") {
       return new Image(
           alignment: Alignment(0.0, -0.95),
           image: new AssetImage('assets/default_user_img.png')
       );
     } else {
+      Uint8List bytesImage = base64.decode(widget.user.imageBytesInString);
       return new Image.memory(
-          widget.user.imageBytes
+          bytesImage
       );
     }
   }

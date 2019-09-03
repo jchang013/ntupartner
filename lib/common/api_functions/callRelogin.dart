@@ -8,37 +8,21 @@ import 'package:ntupartner/model/user_model.dart';
 import 'package:ntupartner/common/functions/saveToken.dart';
 import 'package:ntupartner/ui/mainpage.dart';
 
-Future<UserModel> requestLoginAPI(BuildContext context, String username, String password) async {
-  final url = "http://172.21.148.187:8000/accounts/authenticate/";
-  //final imageurl = "http://172.21.148.187:8000/accounts/image/";
+Future<UserModel> requestReloginAPI(BuildContext context, String token) async {
+  final url = "http://172.21.148.187:8000/accounts/relogin/" + token + "/";
+  final imageurl = "http://172.21.148.187:8000/accounts/image/" + token + "/";
 
   UserModel user;
 
-  Map<String, String> body = {
-    'username': username,
-    'password': password,
-  };
-
-  final response = await http.post(
-    url,
-    body: body,
-  );
-
-  /*final image = await http.post(
-    imageurl,
-    body: body,
-  );
-
-  if (image.statusCode == 200) {
-    String bytes = utf8.decode(image.bodyBytes);
-    bytesImage = base64.decode(bytes);
-    print('image retrieved');
-  }*/
+  final response = await http.post(url);
+  final image = await http.post(imageurl);
 
   if (response.statusCode == 200) {   //Will have to add in other response code
     final responseJson = json.decode(response.body);
+    String responseImage = utf8.decode(image.bodyBytes);
     user = new UserModel.fromJson(responseJson);
-    print('${user.fullname}');
+    user.imageBytesInString = responseImage;
+    print('${user.imageBytesInString}');
 
     //saveCurrentLogin(responseJson);
     saveToken(user.token, 0);
@@ -56,7 +40,7 @@ Future<UserModel> requestLoginAPI(BuildContext context, String username, String 
         "You may have supplied an invalid username or password. Please try again or contact the administrators.",
         "Ok");
     return null;
-    } else if (response.statusCode == 404){ //Page not found
+  } else if (response.statusCode == 404){ //Page not found
 
     showDialogSingleButton(
         context,

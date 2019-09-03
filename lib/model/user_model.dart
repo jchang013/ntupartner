@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'dart:typed_data';
 
 class UserModel {
@@ -16,17 +15,11 @@ class UserModel {
   String country_of_origin;
   String hobbies;
   String avatar_url;
-  //File image;
-  Uint8List imageBytes;
+  String imageBytesInString;
 
-  /*UserModel(this.token, this.id, this.fullname, this.interested_flag, this.ban_flag, this.description,
-      this.course_of_study, this.date_of_birth,
-       this.gender, this.year_of_matriculation, this.religion,
-      this.country_of_origin, this.hobbies, this.avatar_url);
-*/
   UserModel(String token, int id, String fullname, bool interested_flag, bool ban_flag, String description,
       String course_of_study, String date_of_birth, String gender, int year_of_matriculation,
-      String religion, String country_of_origin, String hobbies, String avatar_url) {
+      String religion, String country_of_origin, String hobbies, String avatar_url, String imageBytesInString) {
     this.token = token;
     this.id = id;
     this.fullname = fullname;
@@ -41,6 +34,7 @@ class UserModel {
     this.country_of_origin = country_of_origin;
     this.hobbies = hobbies;
     this.avatar_url = avatar_url;
+    this.imageBytesInString = imageBytesInString;
   }
 
   UserModel.fromJson(Map<String, dynamic> json)
@@ -57,7 +51,8 @@ class UserModel {
         religion = json['religion'],
         country_of_origin = json['country_of_origin'],
         hobbies = json['hobbies'],
-        avatar_url = json['avatar'];
+        avatar_url = json['avatar'],
+        imageBytesInString = json['image'];
 
   Map<String, dynamic> toJson() =>
       {
@@ -75,19 +70,7 @@ class UserModel {
         'country_of_origin': country_of_origin,
         'hobbies' : hobbies,
         'avatar' : avatar_url,
+        'image' : imageBytesInString,
       };
 
-  /*setImage(File image) {
-    this.image = image;
-  }
-
-  File getImage(){
-    return this.image;
-  }*/
-
-  set setImageBytes(Uint8List bytes) => this.imageBytes = bytes;
-
-  Uint8List getImageBytes() {
-    return this.imageBytes;
-  }
 }
