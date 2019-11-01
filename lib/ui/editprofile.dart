@@ -22,6 +22,8 @@ class _EditPageState extends State<EditProfilePage> {
     InputType.date: DateFormat('dd-MM-yyyy'),
   };
 
+  InputType inputType = InputType.date;
+
   static DateTime initDob;
   static String initDescription;
   static String initCountry;

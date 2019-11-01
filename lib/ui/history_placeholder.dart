@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ntupartner/model/history_model.dart';
 
 class PlaceholderHistory extends StatefulWidget {
+
+  PlaceholderHistory({Key key,}) : super(key: key);
   @override
   _PlaceholderHistoryState createState() => _PlaceholderHistoryState();
 }
@@ -61,67 +63,67 @@ final sampleHistoryList = <HistoryModel> [
   HistoryModel(
       'You',
       'Testname',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'Testname2',
       'You',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'You',
       'Testname3',
-      'Passed',
+      'reject',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'You',
       'Testname4',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'You',
       'Testname5',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'You',
       'Testname6',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'Testname7',
       'You',
-      'Liked',
+      'aceept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'You',
       'Testname8',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'You',
       'Testname9',
-      'Liked',
+      'reject',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'You',
       'Testname10',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
   HistoryModel(
       'Testname11',
       'You',
-      'Liked',
+      'accept',
       'dd/mm/yyyy'
   ),
 

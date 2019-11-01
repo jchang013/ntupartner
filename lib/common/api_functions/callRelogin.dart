@@ -4,8 +4,11 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 import 'package:ntupartner/common/functions/showDialogWithSingleButton.dart';
-import 'package:ntupartner/model/user_model.dart';
 import 'package:ntupartner/common/functions/saveToken.dart';
+
+import 'package:ntupartner/model/user_model.dart';
+import 'package:ntupartner/model/match_model.dart';
+
 import 'package:ntupartner/ui/mainpage.dart';
 
 Future<UserModel> requestReloginAPI(BuildContext context, String token) async {
@@ -13,6 +16,14 @@ Future<UserModel> requestReloginAPI(BuildContext context, String token) async {
   final imageurl = "http://172.21.148.187:8000/accounts/image/" + token + "/";
 
   UserModel user;
+
+  List<MatchModel> match = new List();
+
+  MatchModel test1 = new MatchModel('testing1');
+  MatchModel test2 = new MatchModel('testing2');
+
+  match.add(test1);
+  match.add(test2);
 
   final response = await http.post(url);
   final image = await http.post(imageurl);
@@ -29,7 +40,7 @@ Future<UserModel> requestReloginAPI(BuildContext context, String token) async {
 
     Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => MainPage(user: user)));
+        MaterialPageRoute(builder: (context) => MainPage(user: user, match: match,)));
 
     return UserModel.fromJson(responseJson);
   } else if (response.statusCode == 400){ //Incorrect credentials

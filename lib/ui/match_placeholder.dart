@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'package:ntupartner/common/functions/showToastMessage.dart';
+
 import 'package:ntupartner/model/user_model.dart';
+import 'package:ntupartner/model/match_model.dart';
 
 class PlaceholderUser extends StatefulWidget {
-  final String description;
-  PlaceholderUser({Key key, @required this.description}) : super(key: key);
+  final UserModel user;
+  final List<MatchModel> match;
+  PlaceholderUser({Key key, this.user, this.match}) : super(key: key);
   State<StatefulWidget> createState() {
     return _PlaceholderUserState();
   }
@@ -38,7 +42,7 @@ class _PlaceholderUserState extends State<PlaceholderUser> {
             new Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                '<<User Description>>', style: new TextStyle(fontSize: 16,),),
+                widget.user.description, style: new TextStyle(fontSize: 16,),),
             ),
             new Divider(height: 18.0,color: Colors.transparent,),
             new Align(
@@ -49,7 +53,7 @@ class _PlaceholderUserState extends State<PlaceholderUser> {
             new Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                '<<User Hobbies>>', style: new TextStyle(fontSize: 16,),),
+                widget.match[0].matchID, style: new TextStyle(fontSize: 16,),),
             ),
             new Divider(height: 18.0,color: Colors.transparent,),
             new Align(
@@ -135,10 +139,13 @@ class _PlaceholderUserState extends State<PlaceholderUser> {
 
   void _likedPressed () {
     print('Liked');
+    numOfMatch = numOfMatch - 1;
+    showToastMessage("You accepted <<Name>>");
   }
 
   void _passPressed () {
     print('Passed');
     numOfMatch = numOfMatch - 1;
+    showToastMessage("You rejected <<Name>>");
   }
 }

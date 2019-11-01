@@ -3,11 +3,12 @@ import 'package:http/http.dart' as http;
 import 'dart:_http';
 import 'dart:async';
 
-import 'package:ntupartner/model/login_model.dart';
 import 'package:ntupartner/common/functions/getToken.dart';
 import 'package:ntupartner/common/functions/saveLogout.dart';
 
-Future<LoginModel> requestLogoutAPI(BuildContext context) async {
+import 'package:ntupartner/model/user_model.dart';
+
+Future<UserModel> requestLogoutAPI(BuildContext context) async {
   final url = "http://162.21.148.187/accounts/logout";
 
   var token;
